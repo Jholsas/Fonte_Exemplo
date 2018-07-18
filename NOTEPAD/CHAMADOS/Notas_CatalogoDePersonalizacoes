@@ -1,0 +1,45 @@
+:: Descricao :: 
+
+O Catálogo de Personalizações permite gerenciar a execução dos:
+Pontos de Entrada 
+Templates
+
+:: Ponto de Entrada ::
+
+Os Pontos de Entrada são desvios controlados, disponibilizados no decorrer da execução de uma rotina. 
+Importante: Os programas executados a partir do Ponto de Entrada devem ter o prefixo "U_" de User Function. 
+
+
+:: Templates ::
+
+São desenvolvidos para suprir necessidades especificas, como por exemplo, os templates de Ótica e Drogarias, ligados, neste
+caso, ao Módulo de Vendas.
+O Canal oficial para consulta dos templates disponiveis é o TDN - http://tdn.totvs.com.
+Importante: Os programas executados a partir do Template devem ter o prefixo "T_" de Template Function.
+
+:: Modos de Inserção ::
+
+Automatica
+Manual ( Configurador / Ambiente / Cadastros / Catálogo Personalização)
+
+:: Configuracao ::
+
+Ao executar o Catálogo de Personalizações você terá acesso à lista de funções já configuradas ou executadas.
+Selecione a função necessária e pressione o botão Alterar, sendo possível então:
+ Habilitar.
+ Desabilitar.
+ Definir o retorno padrão.
+
+:: Desabilitando a execução ::
+
+Desabilitar um Ponto de Entrada pode ser útil em dois outros momentos:
+ Testes de performance: quando uma rotina contiver Pontos de Entrada e demonstrar lentidão, desabilitar o Ponto de
+Entrada demonstrará se o problema está na Rotina Padrão ou na Customização do Cliente.
+
+:: Retorno Padra ::
+
+O Retorno padrão pode ser utilizado em dois momentos:
+ Para simular a execução de um Ponto de Entrada ou Template sem que haja qualquer risco para execução da rotina padrão.
+ Para definir manualmente um retorno para a execução do Ponto de Entrada.
+Importante: O conteúdo do campo "Retorno Padrão" deve, obrigatoriamente, ser um comando ADVPL, caso contrário, será
+exibida a mensagem "Expressão Inválida“.

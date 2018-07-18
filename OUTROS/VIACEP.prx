@@ -1,0 +1,21 @@
+#Include "totvs.ch"
+
+User Function VIACEP()
+    Local cCEP     := "06757200"
+    Local cHeadRet := ""
+    Local cPostRet := ""
+    Local aHeadOut := {}
+    Local oJson    := NIL
+
+    AAdd(aHeadOut, "User-Agent: Mozilla/4.0 (compatible; Protheus " + GetBuild( )+ ")")
+    AAdd(aHeadOut, 'Content-Type: application/x-www-form-urlencoded')
+
+    cPostRet := HTTPPost("viacep.com.br/ws/" + cCEP + "/json", NIL, NIL, 120, aHeadOut, @cHeadRet)
+    cPostRet := NoAcento(cPostRet)
+
+    cPostRet := FwJsonSerialize(cPostRet, .T., .T.)
+
+    // O DEFEITO ESTA AQUI
+    oJson := JsonObject():New()
+    oJson:FromJson(cPostRet)
+Return (NIL)

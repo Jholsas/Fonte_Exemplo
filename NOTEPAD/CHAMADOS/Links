@@ -1,0 +1,43 @@
+:: Gerenciamento de senha TOTVS ::
+
+http://pwd.totvs.com.br 
+
+***************************************
+
+:: Jira ::
+
+http://jiraproducao.totvs.com.br/secure/Dashboard.jspa
+
+****************************************
+
+:: Fluig :: 
+
+https://totvs.fluigidentity.com/cloudpass/?forward=null&id=login_form
+
+****************************************
+
+:: Zendesk ::
+
+https://totvssuporte.zendesk.com/agent/dashboard
+
+******************************************
+
+:: Cisco Finesse ::
+
+Login PABX
+
+https://sncfinesse1.totvs.com.br/desktop/container/?locale=pt_BR
+
+*********************************************
+
+:: GCAD ::
+
+http://romana.jv01.local/gcad-tools/index.php?go=eng3120
+
+**********************************************
+
+:: TDN - Interno ::
+
+http://tdn.totvs.com/display/acessointerno/Home+-+Interno
+
+**********************************************
