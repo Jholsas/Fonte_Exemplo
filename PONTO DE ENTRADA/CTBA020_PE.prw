@@ -102,3 +102,16 @@ xRet := { {'Salvar', 'SALVAR', { || Alert( 'Salvou' ) }, 'Este botao Salva' } }
 EndIf
 
 Return xRet
+
+
+
+/* pegar operacao em ponto de entrada
+ Local oModel
+ Local	 nOperation := 0
+
+
+oModel := paramixb[1]
+		nOperation := oModel:GetOperation()
+		INCLUI := (nOperation == MODEL_OPERATION_INSERT)
+		ALTERA := (nOperation == MODEL_OPERATION_UPDATE)
+*/
