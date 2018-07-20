@@ -15,6 +15,7 @@ User Function VIACEP()
 
     cPostRet := FwJsonSerialize(cPostRet, .T., .T.)
 
+    Alert(cPostRet)
     // O DEFEITO ESTA AQUI
     oJson := JsonObject():New()
     oJson:FromJson(cPostRet)

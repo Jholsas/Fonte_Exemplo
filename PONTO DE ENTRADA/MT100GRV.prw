@@ -4,7 +4,7 @@ Local lExp01 := PARAMIXB[1]
 Local lExp02 := .T.
 //Validações do usuário
 
-Alert("Chamaou o ponto ! - MT100GRV - Aqui você pode fazer suas validações")
+Alert("Chamaou o ponto ! - MT100GRV - Aqui você pode fazer suas validações antes do Ponto SF1100I")
 
 
 Return lExp01

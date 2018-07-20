@@ -5,7 +5,7 @@ User Function FONTE()
 
 Local lRet := .T.
 
-Alert("MA120BUT")
+Alert("Adiciona Opc no Menu!")
 
 /*If MsgYesNo("Texto informativo", "Teste Msgbox", "Alert")
 

@@ -10,7 +10,7 @@ USER FUNCTION FIN050EXC()
 	DbSeek(xFilial("SE2")+"PAG"+"0001     "+" "+"NF") //Exclusão deve ter o registro SE2 posicionado
 
 	aArray := { { "E2_PREFIXO" , SE2->E2_PREFIXO , NIL },;
-	{ "E2_NUM"     , SE2->E2_NUM     , NIL } }
+				{ "E2_NUM"     , SE2->E2_NUM     , NIL } }
 
 	MsExecAuto( { |x,y,z| FINA050(x,y,z)}, aArray,, 5)  // 3 - Inclusao, 4 - Alteração, 5 - Exclusão
 
@@ -23,4 +23,3 @@ USER FUNCTION FIN050EXC()
 	Endif
 
 Return
-	

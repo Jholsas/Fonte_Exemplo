@@ -1,22 +1,15 @@
-#Include 'Protheus.ch'
+#Include "TOTVS.ch"
 
 User Function MT161OK()
+    Local aProp := PARAMIXB[1]
+    Local cTipo := PARAMIXB[2]
+    Local lCont := .T.
 
-Local aPropostas := PARAMIXB[1] // Array contendo todos os dados da proposta da cotação
+    MsgInfo("Entrou no ponto MT161OK")
 
-Local cTpDoc := PARAMIXB[2] // Tipo do documento
+    DbSelectArea("SC7")
 
-Local lContinua := .T.
-
-Local cAux:=""
-
-//If
-//.....    Validações do usuário.
-RecLock("SC7",.F.)
-        C7_TESTE:='2'
-        cAux:= C7_TESTE
-		SC7-> (MsUnlock())
-        SC7->(dbSkip())
-
-Alert(cAux)
-Return (lContinua)
+    SC7->(RecLock("SC7", .F.))
+        SC7->C7_TESTE := "2"
+    SC7->(MsUnlock())
+Return (lCont)
