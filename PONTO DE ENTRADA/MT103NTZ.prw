@@ -7,5 +7,3 @@ user function MT103NTZ()
 	Alert("chamou o ponto ")
 
 Return ExpC1
-
-
