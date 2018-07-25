@@ -2,7 +2,7 @@
 
 User Function MT131FIL()
 
-//Local cFiltroSC1 := "C1_NUM == '000001'"
+Local cFiltroSC1 := "C1_FORNECE == '000005'"
 
 Alert ('Ponto de Entrada MT131FIL') //Validações do usuário
 

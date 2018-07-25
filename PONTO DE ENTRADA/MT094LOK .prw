@@ -5,14 +5,14 @@ Local cTeste   := ""
 
 // Codigo do usuario....
 
-MsgInfo("Entrou no ponto MT161OK")
+MsgInfo("Entrou no ponto MT094LOK")
 
-    DbSelectArea("SC7")
+    DbSelectArea("SC1")
 
-    SC7->(RecLock("SC7", .F.))
-       cTeste:= SC7->C7_NUM
-        Alert(cTeste)
-    SC7->(MsUnlock())
+    //SC7->(RecLock("SC7", .F.))
+    // cTeste:= SC7->C7_NUM
+        Alert("TESTE")
+    SC1->(MsUnlock())
 
 
 

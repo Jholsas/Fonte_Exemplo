@@ -4,6 +4,6 @@
 user function MT103NTZ()
 
 	Local ExpC1 := ParamIxb[1]     // Rotina do usuário para geração das Pré-Requisições.
-	Alert("chamou o ponto ")
+	Alert("chamou o ponto - MT103NTZ")
 
 Return ExpC1

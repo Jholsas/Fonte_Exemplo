@@ -16,22 +16,22 @@ user function ExecAu103()
 	//PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "COM" TABLES "SF1", "SD1", "SA1", "SA2", "SB1", "SB2", "SF4"
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
 
-	ConOut(Repl("-", 80))
-	ConOut(PadC("Teste MATA103 iniciado!", 80))
-	ConOut(PadC("Inicio: " + Time(), 80))
-	ConOut(Repl("-", 80))
+	//ConOut(Repl("-", 80))
+	//ConOut(PadC("Teste MATA103 iniciado!", 80))
+	//ConOut(PadC("Inicio: " + Time(), 80))
+	//ConOut(Repl("-", 80))
 
 	// INÍCIO: INCLUSÃO //
 	if nOpc == 3
 
 		aadd(aCabec,{"F1_TIPO"              ,"N"     , nil})
 		aadd(aCabec,{"F1_FORMUL"            ," "      , nil})
-		aadd(aCabec,{"F1_DOC"               ,"00013" , nil})
+		aadd(aCabec,{"F1_DOC"               ,"00083" , nil})
 		aadd(aCabec,{"F1_SERIE"             ,"NF "    , nil})
 		aadd(aCabec,{"F1_EMISSAO"           ,dDataBase, nil})
 		aadd(aCabec,{"F1_DESPESA"           ,0     , nil})
-		aadd(aCabec,{"F1_FORNECE"           ,"000001", nil})
-		aadd(aCabec,{"F1_LOJA"              ,"01 "      , nil})
+		aadd(aCabec,{"F1_FORNECE"           ,"000005", nil})
+		aadd(aCabec,{"F1_LOJA"              ,""      , nil})
 		aadd(aCabec,{"F1_ESPECIE"           ,"NFE  "   , nil})
 		aadd(aCabec,{"F1_COND"              ,"001"   , nil})
 		aadd(aCabec,{"F1_DESCONT"           ,0     , nil})
