@@ -1,0 +1,40 @@
+
+USE
+    P1217;
+GO
+
+SELECT TOP 5
+    C.F1_TIPO,
+    C.F1_FORMUL,
+    C.F1_DOC,
+    C.F1_SERIE,
+    C.F1_EMISSAO,
+    C.F1_FORNECE,
+    C.F1_LOJA,
+    C.F1_ESPECIE,
+    C.F1_COND,
+    C.F1_DESPESA,
+    C.F1_INCISS,
+	C.F1_VEICUL1,
+	C.F1_DTCPISS,
+    C.F1_MOEDA,
+    C.F1_TXMOEDA,
+    I.D1_COD,
+    I.D1_QUANT,
+    I.D1_VUNIT,
+    I.D1_TOTAL,
+    I.D1_TES,
+    I.D1_PICM,
+    I.D1_VALICM,
+    I.D1_DESPESA
+FROM
+    SF1990 AS C
+INNER JOIN
+    SD1990 AS I
+ON
+    I.D1_DOC = C.F1_DOC
+-- WHERE
+--     C.F1_DOC = 'DCEN00013'
+ORDER BY
+    C.R_E_C_N_O_ DESC;
+GO

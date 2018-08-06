@@ -1,0 +1,221 @@
+#INCLUDE "RWMAKE.CH"
+#INCLUDE "TBICONN.CH"
+#INCLUDE 'Protheus.ch'
+#INCLUDE 'FWMVCDef.ch'
+
+//------------------------------------------------------------------------
+/*
+EXEMPLO DE INCLUSÃO MODELO 1
+*/
+//------------------------------------------------------------------------
+/*User Function m010IncRa()
+Local oModel      := Nil
+Private lMsErroAuto := .F.
+
+PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
+
+oModel  := FwLoadModel ("MATA010")
+oModel:SetOperation(MODEL_OPERATION_INSERT)
+oModel:Activate()
+oModel:SetValue("SB1MASTER","B1_COD"        ,"RASB101")
+oModel:SetValue("SB1MASTER","B1_DESC"       ,"PRODUTO TESTE 01")
+oModel:SetValue("SB1MASTER","B1_TIPO"       ,"PA")
+oModel:SetValue("SB1MASTER","B1_UM"         ,"UN")
+oModel:SetValue("SB1MASTER","B1_LOCPAD"     ,"01")
+//oModel:SetValue("SB1MASTER","B1_LOCALIZ"    ,"N")
+
+
+If oModel:VldData()
+    oModel:CommitData()
+     MsgInfo("Registro INCLUIDO!", "Atenção")
+Else
+    VarInfo("",oModel:GetErrorMessage())
+EndIf
+
+oModel:DeActivate()
+oModel:Destroy()
+
+oModel := NIL
+
+Return Nil*/
+//------------------------------------------------------------------------
+/*
+EXEMPLO DE INCLUSÃO MODELO 1  (Utilizando a função FwMvcRotAuto apenas em caráter didático)
+*/
+//------------------------------------------------------------------------
+User Function m010Inc1Ra()
+Local aDadoscab := {}
+Local aDadosIte := {}
+Local aItens := {}
+
+Private oModel := Nil
+Private lMsErroAuto := .F.
+Private aRotina := {}
+
+PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "EST"
+
+oModel := FwLoadModel ("MATA010")
+
+//Adicionando os dados do ExecAuto cab
+aAdd(aDadoscab, {"B1_COD" ,"RASB121" , Nil})
+aAdd(aDadoscab, {"B1_DESC" ,"PRODUTO TESTE" , Nil})
+aAdd(aDadoscab, {"B1_TIPO" ,"PA" , Nil})
+aAdd(aDadoscab, {"B1_UM" ,"UN" , Nil})
+aAdd(aDadoscab, {"B1_LOCPAD" ,"01" , Nil})
+aAdd(aDadoscab, {"B1_LOCALIZ" ,"N" , Nil})
+
+//Chamando a inclusão - Modelo 1
+lMsErroAuto := .F.
+
+FWMVCRotAuto( oModel,"SB1",MODEL_OPERATION_INSERT,{{"SB1MASTER", aDadoscab}})
+
+//Se houve erro no ExecAuto, mostra mensagem
+If lMsErroAuto
+ MostraErro()
+//Senão, mostra uma mensagem de inclusão
+Else
+ MsgInfo("Registro incluido!", "Atenção")
+EndIf
+
+
+Return Nil
+
+//------------------------------------------------------------------------
+/*
+EXEMPLO DE INCLUSÃO MODELO 2 (Utilizando a função FwMvcRotAuto apenas em caráter didático)
+*/
+//------------------------------------------------------------------------
+
+/*User Function m010Inc2Ra()
+Local aDadoscab := {}
+Local aDadosIte := {}
+Local aItens := {}
+
+Private oModel := Nil
+Private lMsErroAuto := .F.
+Private aRotina := {}
+
+PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" //MODULO "EST"
+
+oModel := FwLoadModel ("MATA010")
+
+//Adicionando os dados do ExecAuto cab
+aAdd(aDadoscab, {"B1_COD"       ,"RASB103"          , Nil})
+aAdd(aDadoscab, {"B1_DESC"      ,"PRODUTO TESTE"    , Nil})
+aAdd(aDadoscab, {"B1_TIPO"      ,"PA"               , Nil})
+aAdd(aDadoscab, {"B1_UM"        ,"UN"               , Nil})
+aAdd(aDadoscab, {"B1_LOCPAD"    ,"01"               , Nil})
+aAdd(aDadoscab, {"B1_LOCALIZ"   ,"N"                , Nil})
+
+//Adicionando os dados do ExecAuto Item
+//Produtos alternativos (já deve existir na base)
+If "SGI" $ SuperGetMv("MV_CADPROD",,"|SA5|SBZ|SB5|DH5|SGI|")
+ aAdd(aDadosIte, {"GI_PRODALT"  , "RASB100" , Nil})
+ aAdd(aDadosIte, {"GI_ORDEM"    , "1"       , Nil})
+ //no item o array precisa de um nivel superior.
+ aAdd(aItens,aDadosIte)
+EndIf
+
+//Chamando a inclusão - Modelo 2
+lMsErroAuto := .F.
+
+FWMVCRotAuto( oModel,"SB1",MODEL_OPERATION_INSERT,{{"SB1MASTER", aDadoscab},{"SGIDETAIL", aItens}})
+
+If (lMsErroAuto == .T.)
+        aLog := oModel:GetErrorMessage()
+
+        For nX := 1 To Len(aLog)
+            If !Empty(aLog[nX])
+                sLog += Alltrim(aLog[nX]) + CRLF
+            EndIf
+        Next nX
+
+        AutoGRLog(sLog)
+        MostraErro()
+        ConOut(Repl("-", 80))
+        ConOut(PadC("Teste GFEA032 finalizado com erro!", 80))
+        ConOut(PadC("Fim: " + Time(), 80))
+        ConOut(Repl("-", 80))
+    Else
+        ConOut(Repl("-", 80))
+        ConOut(PadC("Teste GFEA032 finalizado com sucesso!", 80))
+        ConOut(PadC("Fim: " + Time(), 80))
+        ConOut(Repl("-", 80))
+    EndIf
+
+//Se houve erro no ExecAuto, mostra mensagem
+/*If lMsErroAuto
+ MostraErro()
+//Senão, mostra uma mensagem de inclusão
+Else
+ MsgInfo("Registro incluido!", "Atenção")
+EndIf*/
+/*RESET ENVIRONMENT
+
+Return Nil*/
+
+//------------------------------------------------------------------------
+/*
+EXEMPLO DE ALTERAÇÃO
+*/
+//------------------------------------------------------------------------
+/*
+User Function m010AltRa()
+Local oModel := Nil
+Private lMsErroAuto := .F.
+
+PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "EST"
+
+//Posiciona
+SB1->(DbSetOrder(1))
+If SB1->(DbSeek(xFilial("SB1") + "RASB101"))
+ oModel := FwLoadModel ("MATA010")
+ oModel:SetOperation(MODEL_OPERATION_UPDATE)
+ oModel:Activate()
+ oModel:SetValue("SB1MASTER","B1_DESC","PRODUTO ALTERADO")
+
+If oModel:VldData()
+ oModel:CommitData()
+ MsgInfo("Registro ALTERADO!", "Atenção")
+ Else
+ VarInfo("",oModel:GetErrorMessage())
+ EndIf
+
+ oModel:DeActivate()
+Else
+ MsgInfo("Registro NAO LOCALIZADO!", "Atenção")
+EndIf
+
+Return Nil
+*/
+//------------------------------------------------------------------------
+/*
+EXEMPLO DE EXCLUSÃO
+*/
+//------------------------------------------------------------------------
+/*
+User Function m010ExcRa()
+Local oModel := Nil
+Private aRotina := {}
+
+PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "EST"
+//Posiciona
+SB1->(DbSetOrder(1))
+If SB1->(DbSeek(xFilial("SB1") + "RASB101"))
+ oModel := FwLoadModel ("MATA010")
+ oModel:SetOperation(MODEL_OPERATION_DELETE)
+ oModel:Activate()
+
+If oModel:VldData()
+ oModel:CommitData()
+ MsgInfo("Registro EXCLUIDO!", "Atenção")
+ Else
+ VarInfo("",oModel:GetErrorMessage())
+ EndIf
+
+ oModel:DeActivate()
+Else
+ MsgInfo("Registro NAO LOCALIZADO!", "Atenção")
+EndIf
+
+Return Nil*/

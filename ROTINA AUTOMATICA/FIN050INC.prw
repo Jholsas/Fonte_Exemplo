@@ -11,7 +11,7 @@ Private lMsErroAuto := .F.
 PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
 
 aAdd(aArray,{ "E2_PREFIXO" , "ABC" , NIL })
-aAdd(aArray,{ "E2_NUM" , "000250" , NIL })
+aAdd(aArray,{ "E2_NUM" , "000450" , NIL })
 aAdd(aArray,{ "E2_TIPO" , "NF" , NIL })
 aAdd(aArray,{ "E2_NATUREZ" , "0000000001" , NIL })
 aAdd(aArray,{ "E2_FORNECE" , "000005" , NIL })
