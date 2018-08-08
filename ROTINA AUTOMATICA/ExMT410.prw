@@ -21,7 +21,7 @@ PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT" TABLES "SC5","SC6","SA
 //****************************************************************
 //* Verificacao do ambiente para teste
 //****************************************************************
-dbSelectArea("SB1")
+/*dbSelectArea("SB1")
 dbSetOrder(1)
 If !SB1->(MsSeek(xFilial("SB1")+"12345"))
     lOk := .F.
@@ -48,34 +48,35 @@ dbSetOrder(1)
 If !SA1->(MsSeek(xFilial("SA1")+"000001"))
     lOk := .F.
     ConOut("Cadastrar cliente: 000001")
-EndIf
-If lOk
+EndIf*/
+//If lOk
     ConOut("Inicio: "+Time())
-    For nY := 1 To 10
+ //   For nY := 1 To 10
         cDoc :=GetSxeNum("SC5","C5_NUM")
         RollBAckSx8()
         aCabec := {}
         aItens := {}
-        aadd(aCabec,{"C5_NUM"   ,cDoc,Nil})
-        aadd(aCabec,{"C5_TIPO" ,"N",Nil})
-        aadd(aCabec,{"C5_CLIENTE","000012",Nil})
-        aadd(aCabec,{"C5_LOJACLI","01",Nil})
-        aadd(aCabec,{"C5_TIPOCLI","F",Nil})
-        aadd(aCabec,{"C5_CONDPAG","001",Nil})
+        aadd(aCabec,{"C5_NUM"       ,cDoc       ,Nil})
+        aadd(aCabec,{"C5_TIPO"      ,"N"        ,Nil})
+        aadd(aCabec,{"C5_CLIENTE"   ,"000010"   ,Nil})
+        aadd(aCabec,{"C5_LOJACLI"   ,"01"       ,Nil})
+        aadd(aCabec,{"C5_TIPOCLI"   ,"F"        ,Nil})
+        aadd(aCabec,{"C5_CONDPAG"   ,"001"      ,Nil})
         /*If cPaisLoc == "PTG"
             aadd(aCabec,{"C5_DECLEXP","TESTE",Nil})
         Endif*/
-        For nX := 1 To 30
+        //For nX := 1 To 30
             aLinha := {}
-            aadd(aLinha,{"C6_ITEM",StrZero(nX,2),Nil})
-            aadd(aLinha,{"C6_PRODUTO","0000000001",Nil})
-            aadd(aLinha,{"C6_QTDVEN",1,Nil})
-            aadd(aLinha,{"C6_PRCVEN",100,Nil})
-            aadd(aLinha,{"C6_PRUNIT",100,Nil})
-            aadd(aLinha,{"C6_VALOR",100,Nil})
-            aadd(aLinha,{"C6_TES","502",Nil})
+            aadd(aLinha,{"C6_ITEM"      ,StrZero(nX,2)  ,Nil})
+            aadd(aLinha,{"C6_PRODUTO"   ,"0000002020"   ,Nil})
+            aadd(aLinha,{"C6_QTDVEN"    ,1              ,Nil})
+            aadd(aLinha,{"C6_PRCVEN"    ,7000           ,Nil})
+            aadd(aLinha,{"C6_PRUNIT"    ,7000           ,Nil})
+            aadd(aLinha,{"C6_VALOR"     ,7000           ,Nil})
+            aadd(aLinha,{"C6_TES"       ,"501"          ,Nil})
             aadd(aItens,aLinha)
-       Next nX
+
+       //Next nX
         //****************************************************************
         //* Teste de Inclusao
         //****************************************************************
@@ -85,12 +86,12 @@ If lOk
         Else
             ConOut("Erro na inclusao!")
         EndIf
-       Next nY
+      // Next nY
     ConOut("Fim  : "+Time())
     //****************************************************************
     //* Teste de alteracao
     //****************************************************************
-    aCabec := {}
+  /*  aCabec := {}
     aItens := {}
     aadd(aCabec,{"C5_NUM",cDoc,Nil})
     aadd(aCabec,{"C5_TIPO","N",Nil})
@@ -101,18 +102,18 @@ If lOk
     If cPaisLoc == "PTG"
         aadd(aCabec,{"C5_DECLEXP","TESTE",Nil})
     Endif
-   For nX := 1 To 30
+   //For nX := 1 To 30
         aLinha := {}
         aadd(aLinha,{"LINPOS","C6_ITEM",StrZero(nX,2)})
         aadd(aLinha,{"AUTDELETA","N",Nil})
         aadd(aLinha,{"C6_PRODUTO",SB1->B1_COD,Nil})
         aadd(aLinha,{"C6_QTDVEN",2,Nil})
-        aadd(aLinha,{"C6_PRCVEN",100,Nil})
-        aadd(aLinha,{"C6_PRUNIT",100,Nil})
-        aadd(aLinha,{"C6_VALOR",200,Nil})
+        aadd(aLinha,{"C6_PRCVEN",10000,Nil})
+        aadd(aLinha,{"C6_PRUNIT",10000,Nil})
+        aadd(aLinha,{"C6_VALOR",20000,Nil})
         aadd(aLinha,{"C6_TES","501",Nil})
         aadd(aItens,aLinha)
-   Next nX
+  // Next nX
     ConOut(PadC("Teste de alteracao",80))
     ConOut("Inicio: "+Time())
     MATA410(aCabec,aItens,4)
@@ -131,6 +132,6 @@ If lOk
     EndIf
     ConOut("Fim  : "+Time())
     ConOut(Repl("-",80))
-EndIf
+//EndIf*/
 RESET ENVIRONMENT
 Return(.T.)

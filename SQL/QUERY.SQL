@@ -1,1 +1,1 @@
-SELECT * FROM SE2990
+select * from SC5990

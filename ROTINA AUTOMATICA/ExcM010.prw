@@ -21,7 +21,7 @@ PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "EST"
 
 oModel := FwLoadModel ("MATA010")
 //Adicionando os dados do ExecAuto cab
-aAdd(aDadoscab, {"B1_COD"       ,"RASB123"           , Nil})
+aAdd(aDadoscab, {"B1_COD"       ,"000220"           , Nil})
 aAdd(aDadoscab, {"B1_DESC"      ,"PRODUTO TESTE"     , Nil})
 aAdd(aDadoscab, {"B1_TIPO"      ,"PA"                , Nil})
 aAdd(aDadoscab, {"B1_UM"        ,"UN"                , Nil})
