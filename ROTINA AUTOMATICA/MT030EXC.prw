@@ -6,7 +6,7 @@
 
 User Function MT030EXC()
 
-    Local nOpc   := 3 // 3) INCLUSÃO || 4) ALTERAÇÃO
+    Local nOpc   := 4 // 3) INCLUSÃO || 4) ALTERAÇÃO
 	Local aCabec := {}
 
 	Private lMsErroAuto := .F.
@@ -16,20 +16,29 @@ User Function MT030EXC()
 
 	GetEnvInfo("MATA030.PRX")
 
-	// INÍCIO: INCLUSÃO //
-	If nOpc == 3
-			aCabec := {	{"A1_COD",       "CLT009",                   NIL},;
-                        {"A1_LOJA",      "01",                       NIL},;
-                        {"A1_NOME",      "ROGER DOGS PETS",          NIL},;
-                        {"A1_PESSOA",    "J",                        NIL},;
-                        {"A1_NREDUZ",    "RODROGS",                  NIL},;
-                        {"A1_BAIRRO",    "AMERICANÓPOLIS",           NIL},;
-                        {"A1_TIPO",      "F",                        NIL},;
-                        {"A1_END",       "RUA FERNANDO GOMES",       NIL},;
-                        {"A1_MUN",       "JACAREÍ",                  NIL},;
-                        {"A1_EST",       "SP",                       NIL}}
+    Begin Transaction
+ DbSelectArea("SA1")
+            DbSetOrder(1)
+
+            // A1_FILIAL + A1_COD + A1_LOJA
+            MsSeek(fwxFilial("SA1") + "CLT009" + "01")
+
+	// INÍCIO: INCLUSÃO/ALTERACAO //
+	If nOpc == 4
+			aCabec := {	{"A1_COD"   ,"CLT009"             ,NIL},;
+                        {"A1_LOJA"  ,"01"                 ,NIL},;
+                        {"A1_NOME"  ,"ROGER DOGS PETS"    ,NIL},;
+                        {"A1_PESSOA","F"                  ,NIL},;
+                        {"A1_NREDUZ","RODROGS"            ,NIL},;
+                        {"A1_BAIRRO","AMERICANÓPOLIS"     ,NIL},;
+                        {"A1_TIPO"  ,"F"                  ,NIL},;
+                        {"A1_END"   ,"RUA FERNANDO GOMES" ,NIL},;
+                        {"A1_MUN"   ,"JACAREÍ"            ,NIL},;
+                        {"A1_EST"   ,"SP"                 ,NIL},;
+                        {"A1_CGC"   ,"31425542034"        ,NIL}}
 	EndIf
-	// FIM: INCLUSÃO //
+
+	// FIM: INCLUSÃO/ALTERACAO //
 
 	MsExecAuto({|x, y| MATA030(x, y)}, aCabec, nOpc)
 
@@ -46,15 +55,12 @@ User Function MT030EXC()
 		ConOut(Repl("-", 80))
 	EndIf
 
+    End Transaction
+
 	RESET ENVIRONMENT
 Return NIL
 
-/*------------------------------------------------------------------*\
-| DESCRIÇÃO: Esta função tem como objetivo retornar informações do   |
-| ambiente e rotina sem a necessidade de abertura do SmartClient     |
-|--------------------------------------------------------------------|
-| AUTOR: Guilherme Bigois         |        MODIFICADO EM: 01/03/2018 |
-\*------------------------------------------------------------------*/
+
 
 Static Function GetEnvInfo(cRotina)
 	Local aRPO := {}

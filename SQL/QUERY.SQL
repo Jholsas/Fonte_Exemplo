@@ -1,1 +1,1 @@
-select * from SC5990
+select * from Sc7990

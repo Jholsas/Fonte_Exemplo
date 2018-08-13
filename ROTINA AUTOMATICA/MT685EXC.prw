@@ -9,20 +9,20 @@ PRIVATE lMsErroAuto := .F.
 
 RpcSetEnv( "99","01",,,cEnvMod,,,,,,)
 
-aCabec := {{"BC_OP"      ,"00000201001"     ,NIL}}
+aCabec := {{"BC_OP"      ,"OP000601001"     ,NIL}}
 aItens := {{"BC_QUANT"   ,10				,NIL},;
-		   {"BC_PRODUTO" ,"TESTE"       	,NIL},;
+		   {"BC_PRODUTO" ,"MODCNTC0001"     ,NIL},;
            {"BC_LOCORIG" ,"01"		        ,NIL},;
            {"BC_TIPO" 	 ,"R" 			    ,NIL},;
            {"BC_DTVALID" ,dDatabase 		,NIL},;
            {"BC_MOTIVO"  ,"FH"              ,NIL}}
 
            AAdd(aLinha ,aItens)
-           MsExecAuto ( {|x,y,z| MATA685(x,y,z) }, aCabec, aLinha, 3)
+           MsExecAuto ( {|x,y,z| MATA685(x,y,z) }, aCabec, aLinha, 6)
 
     If lMsErroAuto
         MostraErro()
     Else
-        Alert("Título incluído com sucesso!")
+        Alert("Excluido com sucesso!")
     Endif
 Return
