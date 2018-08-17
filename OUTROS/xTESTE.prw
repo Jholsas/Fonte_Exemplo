@@ -2,9 +2,16 @@
 #include 'parmtype.ch'
 
 user function xTESTE()
-Local aAcessos := GetAccessList()
+//Local aAcessos := GetAccessList()
+ConOut("     ___   _____   _     _   _____   _      ")
+ConOut("    /   | |  _  \ | |   / / |  _  \ | |     ")
+ConOut("   / /| | | | | | | |  / /  | |_| | | |     ")
+ConOut("  / / | | | | | | | | / /   |  ___/ | |     ")
+ConOut(" / /  | | | |_| | | |/ /    | |     | |___  ")
+ConOut("/_/   |_| |_____/ |___/     |_|     |_____| ")
+ConOut("Analista: Victor Araujo")
 
-return aAcessos
+return
 
 /*
 local aRet      := {}

@@ -1,1 +1,1 @@
-select * from Sc7990
+select * from SC5990 WHERE C6_PRODUTO

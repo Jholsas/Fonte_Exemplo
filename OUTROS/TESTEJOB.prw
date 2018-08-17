@@ -1,0 +1,10 @@
+#INCLUDE "PROTHEUS.CH"
+#INCLUDE "TBICONN.CH"
+
+User Function TESTEJOB()
+	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
+	    ConOut(Repl("-", 80))
+        ConOut(PadC("START JOB - SCHEDULE", 80))
+        ConOut(Repl("-", 80))
+	RESET ENVIRONMENT
+Return''

@@ -20,7 +20,7 @@ Local oLiqCan
 
 PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
 
-cNum := PadR("LDQ0005", TamSX3("E1_NUM")[1])
+cNum := PadR("LDQ0007", TamSX3("E1_NUM")[1])
 //Tela utilizada apenas para exemplo
 nOpca := 0
 DEFINE MSDIALOG oDlg FROM  094,1 TO 240,300 TITLE "Liquidação Automatica" PIXEL

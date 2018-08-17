@@ -6,16 +6,16 @@ user function F080EXC()
 
     Local nOpc    := 3
     Local aTitBx  := {}
- 
+
     Private lMsErroAuto := .F.
- 
+
     PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FIN" TABLES "SE2"
- 
+
     If nOpc == 3
         DbSelectArea("SE2")
         DbSetOrder(1)
         DbSeek(xFilial("SE2") + "TST" + "000000001")
- 
+
         Aadd(aTitBx, {"E2_PREFIXO",    SE2->E2_PREFIXO,    NIL})
         Aadd(aTitBx, {"E2_NUM",        SE2->E2_NUM,        NIL})
         Aadd(aTitBx, {"E2_PARCELA",    SE2->E2_PARCELA,    NIL})
@@ -26,9 +26,9 @@ user function F080EXC()
         Aadd(aTitBx, {"AUTDTBAIXA",    dDataBase,          NIL})
         Aadd(aTitBx, {"AUTHIST",       "Baixa Teste",      NIL})
     EndIf
- 
+
     MsExecAuto({|x, y| FINA080(x, y)}, aTitBx, nOpc)
- 
+
     If lMsErroAuto
         MostraErro()
         ConOut(Repl("-", 80))
@@ -41,6 +41,6 @@ user function F080EXC()
         ConOut(PadC("Fim: " + Time(), 80))
         ConOut(Repl("-", 80))
     EndIf
- 
+
     RESET ENVIRONMENT
 Return NIL

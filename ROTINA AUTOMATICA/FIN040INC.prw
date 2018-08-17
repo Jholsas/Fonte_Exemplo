@@ -11,8 +11,8 @@ PRIVATE lMsErroAuto := .F.
 PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
 
 aArray := { { "E1_PREFIXO"  , "AUT"             , NIL },;
-            { "E1_NUM"      , "1196"            , NIL },;
-            { "E1_TIPO"     , "NF"              , NIL },;
+            { "E1_NUM"      , "1199"            , NIL },;
+            { "E1_TIPO"     , "RA"              , NIL },;
             { "E1_NATUREZ"  , "0000000001"      , NIL },;
             { "E1_CLIENTE"  , "000001"          , NIL },;
             { "E1_EMISSAO"  , CtoD("03/08/2018"), NIL },;
@@ -20,7 +20,7 @@ aArray := { { "E1_PREFIXO"  , "AUT"             , NIL },;
             { "E1_VENCREA"  , CtoD("03/08/2018"), NIL },;
             { "E1_VALOR"    , 5000              , NIL } }
 
-MsExecAuto( { |x,y,z| FINA040(x,y,z)} , aArray, 3, 3)  // 3 - Inclusao, 4 - Alteração, 5 - Exclusão
+MsExecAuto( { |x,y| FINA040(x,y)} , aArray, 3)  // 3 - Inclusao, 4 - Alteração, 5 - Exclusão
 
 
     If lMsErroAuto

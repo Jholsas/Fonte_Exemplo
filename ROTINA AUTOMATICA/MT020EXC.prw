@@ -3,7 +3,7 @@
 
 User Function MyMata020()
 Local aCabec := {}
-Local nOpc := 4
+Local nOpc := 3
 
 
 PRIVATE lMsErroAuto := .F.
@@ -14,21 +14,22 @@ ConOut(Repl("-",80))
 ConOut(PadC("Teste de Cadastro de Fornecedores",80))
 ConOut("Inicio: "+Time())
 //------------------------//| Teste de Inclusao    |//------------------------
-Begin Transaction
+//Em caso de Alteração utilizar o trecho comentado abaixo
+/*Begin Transaction
  DbSelectArea("SA2")
             DbSetOrder(1)
 
             // A2_FILIAL + A2_COD + A2_LOJA
             MsSeek(fwxFilial("SA2") + "F00003" + "01")
-
+*/
 aCabec := {}
-        aadd(aCabec,{"A2_COD"    ,SA2->A2_COD,})
-        aadd(aCabec,{"A2_LOJA"   ,SA2->A2_LOJA,})
-        aadd(aCabec,{"A2_NOME"   ,SA2->A2_NOME,})
-        aadd(aCabec,{"A2_NREDUZ" ,SA2->A2_NREDUZ,})
-        aadd(aCabec,{"A2_END"    ,SA2->A2_END,})
-        aadd(aCabec,{"A2_EST"    ,SA2->A2_EST,})
-        aadd(aCabec,{"A2_MUN"    ,SA2->A2_MUN,})
+        aadd(aCabec,{"A2_COD"    ,"F00004",})
+        aadd(aCabec,{"A2_LOJA"   ,"01",})
+        aadd(aCabec,{"A2_NOME"   ,"F00004",})
+        aadd(aCabec,{"A2_NREDUZ" ,"F00004",})
+        aadd(aCabec,{"A2_END"    ,"ENDERECO",})
+        aadd(aCabec,{"A2_EST"    ,"SP",})
+        aadd(aCabec,{"A2_MUN"    ,"MUNICIPIO",})
         aadd(aCabec,{"A2_TIPO"   ,"F",})
 MSExecAuto({|x,y| mata020(x,y)},aCabec,nOpc)
     If !lMsErroAuto
@@ -38,6 +39,6 @@ MSExecAuto({|x,y| mata020(x,y)},aCabec,nOpc)
 
     EndIf
     	ConOut("Fim  : "+Time())
-    End Transaction
+    //End Transaction
 RESET ENVIRONMENT
 Return Nil
