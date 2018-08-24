@@ -88,7 +88,7 @@ If lOk
         EndIf
     Next nY
     ConOut("Fim  : "+Time())
-
+Endif
    /*
     //****************************************************************
     //* Teste de alteracao

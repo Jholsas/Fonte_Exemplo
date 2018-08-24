@@ -6,7 +6,7 @@
 
 User Function MT030EXC()
 
-    Local nOpc   := 4 // 3) INCLUSÃO || 4) ALTERAÇÃO
+    Local nOpc   := 3 // 3) INCLUSÃO || 4) ALTERAÇÃO
 	Local aCabec := {}
 
 	Private lMsErroAuto := .F.
@@ -25,7 +25,7 @@ User Function MT030EXC()
 
 	// INÍCIO: INCLUSÃO/ALTERACAO //
 	If nOpc == 4
-			aCabec := {	{"A1_COD"   ,"CLT009"             ,NIL},;
+			aCabec := {	{"A1_COD"   ,"CLT014"             ,NIL},;
                         {"A1_LOJA"  ,"01"                 ,NIL},;
                         {"A1_NOME"  ,"ROGER DOGS PETS"    ,NIL},;
                         {"A1_PESSOA","F"                  ,NIL},;

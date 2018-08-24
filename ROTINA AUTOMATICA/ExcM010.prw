@@ -12,16 +12,19 @@ User Function m010Inc1Ra()
 Local aDadoscab := {}
 Local aDadosIte := {}
 Local aItens    := {}
+Local nX := 0
+Local nCodPro := 000504
 
 Private oModel      := Nil
 Private lMsErroAuto := .F.
 Private aRotina     := {}
 
 PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "EST"
+for nX := 1 to 400
 
 oModel := FwLoadModel ("MATA010")
 //Adicionando os dados do ExecAuto cab
-aAdd(aDadoscab, {"B1_COD"       ,"000220"           , Nil})
+aAdd(aDadoscab, {"B1_COD"       ,CValToChar(nCodPro) , Nil})
 aAdd(aDadoscab, {"B1_DESC"      ,"PRODUTO TESTE"     , Nil})
 aAdd(aDadoscab, {"B1_TIPO"      ,"PA"                , Nil})
 aAdd(aDadoscab, {"B1_UM"        ,"UN"                , Nil})
@@ -33,6 +36,8 @@ lMsErroAuto := .F.
 
 FWMVCRotAuto( oModel,"SB1",MODEL_OPERATION_INSERT,{{"SB1MASTER", aDadoscab}})
 
+		++nCodPro
+	Next nX
 //Se houve erro no ExecAuto, mostra mensagem
 If lMsErroAuto
  MostraErro()
@@ -40,6 +45,7 @@ If lMsErroAuto
 Else
  MsgInfo("Registro incluido!", "Atenção")
 EndIf
+RESET ENVIRONMENT
 
 
 Return Nil

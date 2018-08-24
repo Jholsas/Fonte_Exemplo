@@ -21,13 +21,12 @@ User Function FINA070EXC()
 	SE1->(dbSetOrder(1))
 	SE1->(dbGoTop())
 
-	//conout("Teste de Baixa de Titulo") /**/ */
+	conout("Teste de Cancelamento de  Baixa") /**/
 
-
-	aBaixa := {{"E1_PREFIXO"  ,"ABC"                  ,Nil    },;
-			   {"E1_NUM"      ,"000222   "            ,Nil    },;
+	aBaixa := {{"E1_PREFIXO"  ,"   "                  ,Nil    },;
+			   {"E1_NUM"      ,"000000016"            ,Nil    },;
 			   {"E1_PARCELA"  ,"  "                   ,Nil    },;
-			   {"E1_TIPO"     ,"BOL"                   ,Nil    },;
+			   {"E1_TIPO"     ,"NF "                  ,Nil    },;
 			   {"E1_CLIENTE"  ,"000001"               ,Nil    },;
 			   {"E1_LOJA"     ,'01'                   ,Nil    },;
 			   {"E1_NATUREZ"  ,"0000000001"           ,Nil    },;
@@ -35,18 +34,18 @@ User Function FINA070EXC()
 			   {"CBANCO"      ,"341"                  ,Nil    },;
 			   {"CAGENCIA"    ,"0001 "                ,Nil    },;
 			   {"CCONTA"      ,"000001    "           ,Nil    },;
-			   {"AUTDTBAIXA"  ,CtoD("07/08/2018")     ,Nil    },;
-			   {"AUTDTCREDITO",CtoD("07/08/2018")     ,Nil    },;
-			   {"AUTHIST"     ,"TESTE FINA070     "   ,Nil    },;
-			   {"AUTJUROS"    ,0                      ,Nil,.T.}}
-	//{"NVALREC"   ,560,Nil    }}
+			   {"AUTDTBAIXA"  ,CtoD("21/08/2018")     ,Nil    },;
+			   {"AUTDTCREDITO",CtoD("21/08/2018")     ,Nil    },;
+			   {"AUTHIST"     ,"TESTE FINA070     "   ,Nil    }}
+			   //{"AUTJUROS"    ,0                      ,Nil,.T.}}
+				//{"NVALREC"   ,560,Nil    }}
 
-	MSExecAuto({|x,y| Fina070(x,y)},aBaixa,3) //3 - Inclui ,4 - Altera,5 - Remove //Sequencia 2 é o valor de 1000
+	MSExecAuto({|x,y| Fina070(x,y)},aBaixa,5) //3 - Baixa de Título, 4 - Altera, 5 - Cancelamento de baixa, 6 - Exclusão de Baixa.
 
 	If lMsErroAuto
 		MostraErro()
 	Else
-		conout("BAIXADO COM SUCESSO!" + E1_NUM)
+		conout("CANCELADO BAIXADO COM SUCESSO!" + E1_NUM)
 	Endif
 
 	RESET ENVIRONMENT

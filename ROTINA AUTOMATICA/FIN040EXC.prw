@@ -28,7 +28,8 @@ User Function FIN040EXC(nNumTit)
 						{"E1_NUM"      ,CValToChar(nNumTit)    ,NIL    },;
 						{"E1_PARCELA"  ,"  "                   ,NIL    },;
 						{"E1_TIPO"     ,"RA"                   ,NIL    },;
-						{"E1_NATUREZ"  ,"0000000001"           ,NIL    },;
+						{"E1_NATUREZ"  ,"0000000001"
+						       ,NIL    },;
 						{"E1_CLIENTE"  ,"000001"  		       ,NIL    },;
 						{"E1_LOJA"	   ,"01"				   ,NIL    },;
 						{"E1_EMISSAO"  ,CtoD('19/06/2018')	   ,NIL    },;

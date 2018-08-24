@@ -7,9 +7,9 @@ User Function MT161OK()
 
     MsgInfo("Entrou no ponto MT161OK")
 
-    DbSelectArea("SC7")
+    /*DbSelectArea("SC7")
 
     SC7->(RecLock("SC7", .F.))
         SC7->C7_TESTE := "2"
-    SC7->(MsUnlock())
+    SC7->(MsUnlock())*/
 Return (lCont)

@@ -4,17 +4,17 @@
 
 user function F080EXC()
 
-    Local nOpc    := 3
+    Local nOpc    := 6
     Local aTitBx  := {}
 
     Private lMsErroAuto := .F.
 
     PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FIN" TABLES "SE2"
 
-    If nOpc == 3
+    If nOpc == 6
         DbSelectArea("SE2")
         DbSetOrder(1)
-        DbSeek(xFilial("SE2") + "TST" + "000000001")
+        DbSeek(xFilial("SE2") + "ABC" + "000510")
 
         Aadd(aTitBx, {"E2_PREFIXO",    SE2->E2_PREFIXO,    NIL})
         Aadd(aTitBx, {"E2_NUM",        SE2->E2_NUM,        NIL})
