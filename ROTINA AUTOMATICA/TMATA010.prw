@@ -8,8 +8,8 @@
 #Include "totvs.ch"
 #Include "tbiconn.ch"
 
-User Function TMATA010()
-	Local nOpr    := 4
+User Function TMT010()
+	Local nOpc    := 3
 	Local nX      := 0
 	Local aHeader := {}
 	Local aArea   := {}
@@ -24,9 +24,9 @@ User Function TMATA010()
 
 		// BEGIN: INCLUDE //
 		// For nX := 1 To 1000
-			If (nOpr == 3)
-				AAdd(aHeader, {"B1_COD",        "PROD001" + StrZero(nX, 6),    NIL})
-				AAdd(aHeader, {"B1_DESC",       "PROD001" + StrZero(nX, 6),    NIL})
+			If (nOpc == 3)
+				AAdd(aHeader, {"B1_COD",        "PROD0007" + StrZero(nX, 6),    NIL})
+				AAdd(aHeader, {"B1_DESC",       "PROD0007" + StrZero(nX, 6),    NIL})
 				AAdd(aHeader, {"B1_TIPO",       "PA",                         NIL})
 				AAdd(aHeader, {"B1_UM",         "UN",                         NIL})
 				AAdd(aHeader, {"B1_LOCPAD",     "01",                         NIL})
@@ -43,7 +43,7 @@ User Function TMATA010()
 		// Next nX
 		// END: INCLUDE //
 
-		MsExecAuto({|x, y| MATA010(x, y)}, aHeader, nOpr)
+		MsExecAuto({|x, y| MATA010(x, y)}, aHeader, nOpc)
 
 		If (lMsErroAuto == .T.)
 			MostraErro()

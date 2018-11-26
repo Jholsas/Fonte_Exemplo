@@ -5,14 +5,14 @@ User Function FIN040MAIN()
 	Local nX := 0
 	Local nNumTit := 1000
 
-	For nX := 1 To 5
-		StartJob("U_FIN040EXC", GetEnvServer(), .F., nNumTit)
+	For nX := 1 To 2
+		StartJob("U_FIN040EXC", GetEnvServer(), .T., StrZero(nX,2,))
 
-		nNumTit += 1000
+
 	Next nX
 Return (NIL)
 
-User Function FIN040EXC(nNumTit)
+User Function FIN040EXC(cAuxFil)
 	Local aArray := {}
 	Local aArea  := {}
 	Local nX     := 0
@@ -20,7 +20,7 @@ User Function FIN040EXC(nNumTit)
 	Private lMsErroAuto := .F.
 	Private lMsHelpAuto := .T.
 
-	RPCSetEnv("99", "01")
+	RPCSetEnv("99", cAuxFil)
 		aArea := GetArea()
 
 		For nX := 1 To 600
@@ -49,12 +49,12 @@ User Function FIN040EXC(nNumTit)
 			MostraErro()
 
 			ConOut(Repl("-", 80))
-			ConOut(PadC("FINA040 finalizada com erro!", 80))
+			ConOut(PadC("FINA100 finalizada com erro!", 80))
 			ConOut(PadC("Ends at: " + Time(), 80))
 			ConOut(Repl("-", 80))
 		Else
 			ConOut(Repl("-", 80))
-			ConOut(PadC("FINA040 finalizada com sucesso!", 80))
+			ConOut(PadC("Movto. Bancario Pagar incluido com sucesso !!!", 80))
 			ConOut(PadC("Ends at: " + Time(), 80))
 			ConOut(Repl("-", 80))
 		EndIf

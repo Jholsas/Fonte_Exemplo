@@ -1,0 +1,57 @@
+<%#include "tbiconn.ch"%>
+<%#include "topconn.ch"%>
+
+
+<html>
+
+<head>
+<title>Teste de Listagem de Produtos em HTML através do ADVPLASP</title>
+</head>
+
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b><u><font face="Arial Black"
+size="6" color="#FF0000">LISTA DE PRODUTOS </font></u></b></p>
+
+<table border="1" width="100%">
+<tr>
+    <td width="25%"><b><font color="#0000FF">PRODUTO</font></b></td>
+    <td width="50%"><b><font color="#0000FF">DESCRICAO</font></b></td>
+    <td width="25%"><b><font color="#0000FF">PRECO</font></b></td>
+</tr>
+
+<p align="left" style="line-height: 100%; word-spacing: 0; margin: 0"><b><font size="3" face="Arial"><fontcolor="#000080">&nbsp;</font><fontcolor="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</font></font></b></p>
+
+<%        PREPARE ENVIRONMENT EMPRESA "02" FILIAL "01" MODULO "FAT"
+
+
+               cQuery := ""
+               cQuery += "SELECT * FROM "+ RetSqlName("SB1")+" SB1 (NOLOCK) "
+               cQuery += "WHERE B1_COD BETWEEN '11.00001' AND '11.000100' "
+
+               If Select("FER") <> 0
+                    dbSelectArea("FER")
+                       dbCloseArea()
+               Endif
+
+               TCQuery cQuery NEW ALIAS "FER"
+
+               dbSelectArea("FER")
+               dbgotop()
+
+               WHILE !EOF()   %>
+
+               <tr>
+               <td width="25%"><%= FER->B1_COD %> </td>
+               <td width="50%"><%= FER->B1_DESC %> </td>
+               <td width="25%"><%= FER->B1_PRV1 %> </td>
+               </tr>
+
+               <%
+               FER->(dbSkip())
+               EndDo
+
+               RESET ENVIRONMENT %>
+
+</table>
+
+</body>
+</html>

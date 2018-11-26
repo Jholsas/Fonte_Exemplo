@@ -2,7 +2,36 @@
 #include "parmtype.ch"
 
 User Function CRMA980()
-    Local aParam := PARAMIXB
+    Local aParam 	 := PARAMIXB
+	Local oObj 		 := aParam[1]
+	Local cIdPonto 	 := aParam[2]
+	Local lRet 		 := .T.
+	Local cIdModel 	 := IIf(oObj != NIL, oObj:GetId(), aParam[3])
+	Local cClasse 	 := IIf(oObj != NIL, oObj:ClassName(), "")
+	Local nOperation := 0
+    Local cMsg       := ""
+    Local cContOk    := "123"
+
+	If (oObj != NIL .And. oObj:IsActive() == .T.)
+		oModelPad  := FwModelActive()
+		oModel     := oModelPad:GetModel("SA1MASTER")
+		nOperation := oObj:GetOperation()
+
+		If (cIdPonto == "FORMPRE")
+			If (nOperation == 3 )
+				oModel:LoadValue("A1_GRPTRIB", cContOk )
+               cMsg :="Ponto MVC "
+               cMsg += " ID " + cIdModel + CRLF
+               cMsg += " ID " + cIdPonto + CRLF
+               xRet := ApMsgYesNo(cMsg + "Continua?")
+			EndIf
+		EndIf
+	EndIf
+Return (lRet)
+
+
+
+   /* Local aParam := PARAMIXB
     Local xRet := .T.
     Local oObj := ""
     Local cIdPonto := ""
@@ -79,3 +108,4 @@ Return xRet
 User Function TSMT030()
     Alert("Buttonbar")
 Return NIL
+*/

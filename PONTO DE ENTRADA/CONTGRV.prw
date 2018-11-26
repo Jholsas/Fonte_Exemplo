@@ -6,4 +6,4 @@ user function CONTGRV()
 
 	MsgAlert("Executou o PE!")
 
-return lRet
+return nil

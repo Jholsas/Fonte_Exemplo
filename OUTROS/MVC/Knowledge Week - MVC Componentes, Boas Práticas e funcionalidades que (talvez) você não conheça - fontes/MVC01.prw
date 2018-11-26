@@ -11,6 +11,8 @@ Exemplo de um modelo e view baseado em uma unica tabela.
 User Function MVC01()
 Local oBrowse
 
+PRIVATE aRotina := MenuDef()
+
 	oBrowse := FWMBrowse():New()
 	oBrowse:SetAlias('SA1')
 	oBrowse:SetDescription('Cadastro de Alunos')
@@ -28,6 +30,7 @@ ADD OPTION aRotina TITLE 'Alterar'    ACTION 'VIEWDEF.MVC01' OPERATION 4 ACCESS 
 ADD OPTION aRotina TITLE 'Excluir'    ACTION 'VIEWDEF.MVC01' OPERATION 5 ACCESS 0
 ADD OPTION aRotina TITLE 'Imprimir'   ACTION 'VIEWDEF.MVC01' OPERATION 8 ACCESS 0
 ADD OPTION aRotina TITLE 'Copiar'     ACTION 'VIEWDEF.MVC01' OPERATION 9 ACCESS 0
+//ADD OPTION aRotina TITLE 'TESTE'      ACTION 'U_xTESTE'		 OPERATION 3 ACCESS 0
 
 Return aRotina
 
@@ -40,6 +43,7 @@ Local oStruSA1 := FWFormStruct(1,"SA1")
 
 	oModel:addFields('MASTERSA1',,oStruSA1)
 	oModel:getModel('MASTERSA1'):SetDescription('Dados do Aluno')
+	//oModel:addGrid('ZB6DETAIL','ZB5MASTER',oStruZB6)
 
 Return oModel
 
@@ -54,6 +58,7 @@ Local oStrSA1:= FWFormStruct(2, 'SA1')
 	oView:AddField('FORM_ALUNO' , oStrSA1,'MASTERSA1' )
 	oView:CreateHorizontalBox( 'BOX_FORM_ALUNO', 100)
 	oView:SetOwnerView('FORM_ALUNO','BOX_FORM_ALUNO')
+	oView:AddGrid('FORM_ALUNO' , oStrSA1,'MASTERSA1')
 
 Return oView
 
@@ -65,3 +70,6 @@ Local oView
 	oView:SetModel(oModel)
 
 Return oView*/
+
+
+//oModel:AddGrid("ZB6DETAIL", "ZB5MASTER", FWFormStruct(1,"ZB6"))

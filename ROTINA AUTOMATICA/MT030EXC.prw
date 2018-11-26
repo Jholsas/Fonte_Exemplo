@@ -14,27 +14,28 @@ User Function MT030EXC()
 
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "COM" TABLES "SA1"
 
-	GetEnvInfo("MATA030.PRX")
+	//GetEnvInfo("MATA030.PRX")
 
-    Begin Transaction
- DbSelectArea("SA1")
-            DbSetOrder(1)
+   // Begin Transaction
+ //DbSelectArea("SA1")
+   //         DbSetOrder(1)
 
             // A1_FILIAL + A1_COD + A1_LOJA
-            MsSeek(fwxFilial("SA1") + "CLT009" + "01")
+     //       MsSeek(fwxFilial("SA1") + "CLT009" + "01")
 
 	// INÍCIO: INCLUSÃO/ALTERACAO //
-	If nOpc == 4
-			aCabec := {	{"A1_COD"   ,"CLT014"             ,NIL},;
+	If nOpc == 3
+			aCabec := {	{"A1_COD"   ,"CLNT26"             ,NIL},;
                         {"A1_LOJA"  ,"01"                 ,NIL},;
-                        {"A1_NOME"  ,"ROGER DOGS PETS"    ,NIL},;
+                        {"A1_NOME"  ,"ADVPL TESTE"        ,NIL},;
                         {"A1_PESSOA","F"                  ,NIL},;
-                        {"A1_NREDUZ","RODROGS"            ,NIL},;
+                        {"A1_NREDUZ","ADVPLTST"           ,NIL},;
                         {"A1_BAIRRO","AMERICANÓPOLIS"     ,NIL},;
                         {"A1_TIPO"  ,"F"                  ,NIL},;
                         {"A1_END"   ,"RUA FERNANDO GOMES" ,NIL},;
                         {"A1_MUN"   ,"JACAREÍ"            ,NIL},;
                         {"A1_EST"   ,"SP"                 ,NIL},;
+                        {"A1_INSCR" ,"147172801118"       ,NIL},;
                         {"A1_CGC"   ,"31425542034"        ,NIL}}
 	EndIf
 
@@ -55,7 +56,7 @@ User Function MT030EXC()
 		ConOut(Repl("-", 80))
 	EndIf
 
-    End Transaction
+    //End Transaction
 
 	RESET ENVIRONMENT
 Return NIL

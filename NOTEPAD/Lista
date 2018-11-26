@@ -2,3 +2,62 @@
 
 
 3621821  
+
+
+- A Aceita apenas caracteres alfabéticos
+ - L Aceita apenas caracteres lógicos:
+ - T (True), F (False), "N" ou "S"
+ - N Aceita apenas letras ou números
+ - X Aceita qualquer caracter
+ - Y Aceita apenas Y (Yes) ou N (No)
+ - 9 Aceita somente números e sinais
+ - ! Converte em letras maiúsculas
+ - & Converte em letras minusculas
+ - $ Exibe o símbolo "$" à frente de um número
+ - * Exibe o asterisco à frente de um número
+ - , Exibe uma vírgula Máscara para o dado
+ - @A Aceita apenas caracteres alfabéticos
+ - @B O número é ajustado à esquerda
+ - @C Exibe o sinal "CR" depois de números positivos
+ - @D Exibe as datas no formato padrão
+ - @E Aceita a entrada de números no formato brasileiro, ou seja, uso da vírgula como
+ separador de decimal, e datas exibidas no formato DD/MM/AA
+ - @K Permite exibir um valor provável do conteúdo do campo
+ - @R Permite exibir caracteres que não farão parte do conjunto de caracteres a serem
+ gravados
+ Ex: "@R 99.999.999/9999-99" , "@R (99)9999.9999"
+ - @Sn Permite o rolamento horizontal para preenchimento do campo, no tamanho
+definido por "n"
+ - @X Exibe a notação "DB" depois de números negativos
+ - @) Retorna um valor negativo entre parênteses
+ - @( Retorna um valor negativo entre parênteses, com espaços em branco
+ - @! Converte todos os caracteres alfabéticos em letras maiúsculas
+ - @& Converte todos os caracteres alfabéticos em letras minusculas
+ - BR_AMARELO,BR_AZUL,BR_BRANCO,BR_CINZA,BR_LARANJA,,BR_MARRON,
+BR_VERDE,BR_VERMELHO, BR_PINK, BR_PRETO.
+
+
+
+static Function troca(cString)
+
+Private cFrase := ""
+
+cFrase := strtran(cString,"ã","a")
+
+cFrase := strtran(cFrase,"º","")
+
+cFrase := strtran(cFrase,"%","")
+
+cFrase := strtran(cFrase,"*","")
+
+cFrase := strtran(cFrase,"&","")
+
+cFrase := strtran(cFrase,"$","")
+
+cFrase := strtran(cFrase,"#","")
+
+cFrase := strtran(cFrase,"§","")
+
+cFrase := strtran(cFrase,"ä","a")
+
+return(cFrase)

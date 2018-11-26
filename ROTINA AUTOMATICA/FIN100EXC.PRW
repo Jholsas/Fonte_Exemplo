@@ -1,47 +1,67 @@
 #include "tbiconn.ch"
 
-/*user function FIN100EXC()
+User Function FIN100MAIN()
+	Local nX := 0
+
+	For nX := 1 To 2
+		StartJob("U_FIN100EXC", GetEnvServer(), .T., StrZero(nX,2))
+
+
+	Next nX
+Return (NIL)
+
+
+user function FIN100EXC(cAuxFil)
 
 local aFINA100 := {}
 
-PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FIN"
+RPCSetEnv("99", cAuxFil)
+		aArea := GetArea()
+
+//PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FIN"
 
 private lMsErroAuto := .F.
 
                aFINA100 := {{"E5_DATA"    ,dDataBase               ,Nil},;
                             {"E5_MOEDA"   ,"M1"                    ,Nil},;
-                            {"E5_VALOR"   ,2018                    ,Nil},;
+                            {"E5_VALOR"   ,400                     ,Nil},;
                             {"E5_NATUREZ" ,"0000000001"            ,Nil},;
                             {"E5_DEBITO"  ,"000000002 "            ,Nil},;
                             {"E5_CREDITO" ,"000000001 "            ,Nil},;
-                            {"E5_BANCO"   ,"341"                   ,Nil},;
-                            {"E5_AGENCIA" ,"0001"                  ,Nil},;
-                            {"E5_CONTA"   ,"000001"                ,Nil},;
+                            {"E5_BANCO"   ,"237"                   ,Nil},;
+                            {"E5_AGENCIA" ,"0002"                  ,Nil},;
+                            {"E5_CONTA"   ,"000002"                ,Nil},;
                             {"E5_BENEF"   ,"TESTE AUTO - BENEF"    ,Nil},;
                             {"E5_TIPOLAN" ,"X"                     ,Nil},;
                             {"E5_HISTOR"  ,"TABELA FK5/E5_IDOR01 " ,Nil}}
 
         MSExecAuto({|x,y,z| FinA100(x,y,z)},0,aFINA100,3)
 
-        If lMsErroAuto
-            MostraErro()
-        Else
-            CONOUT("Movto. Bancario Pagar incluido com sucesso !!!")
-        EndIf
+       If (lMsErroAuto == .T.)
+			MostraErro()
+			ConOut(Repl("-", 80))
+			ConOut(PadC("FINA100 finalizada com erro! FILIAL:" + cAuxFil, 80))
+			ConOut(PadC("Ends at: " + Time(), 80))
+			ConOut(Repl("-", 80))
+		Else
+			ConOut(Repl("-", 80))
+			ConOut(PadC("Movto. Bancario Pagar incluido com sucesso !!! FILIAL:" + cAuxFil, 80))
+			ConOut(PadC("Ends at: " + Time(), 80))
+			ConOut(Repl("-", 80))
+		EndIf
 
-if lMsErroAuto
- conOut("Erro na execucao do processo")
- mostraErro()
-else
- conOut("Processo executado com sucesso")
-endIf
-
-RESET ENVIRONMENT
-
-return*/
+		RestArea(aArea)
+	RPCClearEnv()
+Return (NIL)
 
 
-#INCLUDE "Protheus.ch"
+
+//RESET ENVIRONMENT
+
+//return
+
+
+/*#INCLUDE "Protheus.ch"
 
 User Function FIN100EXC()
 Local nOpc     := 0
@@ -182,3 +202,4 @@ While .T.
 Enddo
 
 Return(Nil)
+*/

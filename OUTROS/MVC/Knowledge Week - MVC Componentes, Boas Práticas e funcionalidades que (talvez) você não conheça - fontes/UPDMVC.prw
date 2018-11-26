@@ -4748,7 +4748,7 @@ aAdd( aSX3, { ;
 
 //
 // Campos Tabela ZC0
-// 
+//
 aAdd( aSX3, { ;
 	{ 'ZC0'																	, .T. }, ; //X3_ARQUIVO
 	{ '01'																	, .T. }, ; //X3_ORDEM
@@ -11009,11 +11009,11 @@ For nLoop := 1 To 20
 		Else
 			OpenSM0Excl(,.F.)
 		EndIf
-		
+
 		If !Empty( Select( 'SM0' ) )
 			lOpen := .T.
 			Exit
-		EndIF	
+		EndIF
 	Else
 		dbUseArea( .T., , "SIGAMAT.EMP", "SM0", lShared, .F. )
 		If !Empty( Select( "SM0" ) )
@@ -11495,10 +11495,3 @@ Next nI
 AutoGrLog( CRLF + "Final da Atualização" + " SX1" + CRLF + Replicate( "-", 128 ) + CRLF )
 
 Return NIL
-
-
-
-
-
-
-

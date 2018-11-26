@@ -1,56 +1,30 @@
 #include "protheus.ch"
 #include "parmtype.ch"
- 
-User Function ITEM ()
-    Local aParam   := PARAMIXB
-    Local oModel   := FwModelActive()
-    Local oObj     := ""
-    Local cIdPonto := ""
-    Local cIdModel := ""
-    Local lIsGrid  := .F.
-    Local xRet     := .T.
-    
-         
-    // VERIFICA SE APARAM NÃO ESTÁ NULO
-    If aParam <> NIL
-        oObj := aParam[1]
-        cIdPonto := aParam[2]
-        cIdModel := aParam[3]
-        lIsGrid := (Len(aParam) > 3)
-         
-        //  VERIFICA SE O PONTO EM QUESTÃO É O FORMPOS
-        If cIdPonto == "MODELPRE"
-         
-         	
-            // VERIFICA SE OMODEL NÃO ESTÁ NULO
-           
-             
-                  oModel:GetModel("SB5MASTER"):SetValue("B5_CEME","") // ATRIBUI VALOR A VARIÁVEL POR MEIO DO MODELO DE DADOS
-                  oModel:GetModel("SB5MASTER"):SetValue("B5_DES","") // ATRIBUI VALOR A VARIÁVEL POR MEIO DO MODELO DE DADOS
-                
-            
-             
-        EndIf
-     
-    EndIf
-Return xRet
 
+User Function ITEM()
 
+	Local aParam 	 := PARAMIXB
+	Local oObj 		 := aParam[1]
+	Local cIdPonto 	 := aParam[2]
+	Local lRet 		 := .T.
+	Local cIdModel 	 := IIf(oObj != NIL, oObj:GetId(), aParam[3])
+	Local cClasse 	 := IIf(oObj != NIL, oObj:ClassName(), "")
+	Local nOperation := 0
+//If aParam <> NIL
+	If (oObj != NIL .And. oObj:IsActive() == .T.)
 
+		oModelPad  := FwModelActive()
+		oModel     := oModelPad:GetModel("SB5DETAIL")
+		nOperation := oObj:GetOperation()
 
+		If (cIdPonto == "FORMPRE")
+			If (nOperation == 3 .And. IsInCallStack("A010COPIA") .And. ProcName(4) == "CANSETVALUE")
+				alert ('limpou')
+				oModel:LoadValue("B5_CEME", "1234")
+				oModel:LoadValue("B5_DESCNFE", "")
+				oModel:LoadValue("B5_COMPR",999)
+			EndIf
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		EndIf
+	EndIf
+Return (lRet)

@@ -2,6 +2,33 @@
 #include "parmtype.ch"
 
 User Function CUSTOMERVENDOR()
+    /*Local aParam 	 := PARAMIXB
+	Local oObj 		 := aParam[1]
+	Local cIdPonto 	 := aParam[2]
+	Local lRet 		 := .T.
+	Local cIdModel 	 := IIf(oObj != NIL, oObj:GetId(), aParam[3])
+	Local cClasse 	 := IIf(oObj != NIL, oObj:ClassName(), "")
+	Local nOperation := 0
+    Local cMsg       := ""
+
+	If (oObj != NIL .And. oObj:IsActive() == .T.)
+		oModelPad  := FwModelActive()
+		oModel     := oModelPad:GetModel("SA2MASTER")
+		nOperation := oObj:GetOperation()
+
+		If (cIdPonto == "FORMPRE")
+			If (nOperation == 4 )
+				oModel:LoadValue("A2_MSBLQD", Date()+5 )
+               cMsg :="Ponto MVC"
+               cMsg += "ID " + cIdModel + CRLF
+               cMsg += "ID " + cIdPonto + CRLF
+               xRet := ApMsgYesNo(cMsg + "Continua?")
+			EndIf
+		EndIf
+	EndIf
+Return (lRet)*/
+
+
     Local aParam := PARAMIXB
     Local xRet := .T.
     Local oObj := ""

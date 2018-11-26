@@ -21,11 +21,22 @@ aVetor:={  {"D3_TM"         ,"001"               ,NIL},;
            {"D3_OP"         ,""                  ,NIL},;
            {"D3_LOCAL"      ,"01"                ,NIL},;
            {"D3_DOC"        ,""                  ,NIL},;
-           {"D3_EMISSAO"    ,ddatabase           ,NIL},;
-           {"D3_DTVALID"    ,ddatabase           ,NIL},;
+           {"D3_EMISSAO"    ,ddatabase           ,NIL}}
+
+		   If SB1->B1_RASTRO $ 'L'
+				aVetor:={{ "D3_LOTECTL"	, "LOTE0001"	, Nil }}
+		  		If SB1->B1_RASTRO == 'S'
+
+					aVetor:={ { "D3_NUMLOTE"	, "SUB0001"	, Nil } }
+				EndIf
+		  		aVetor:={ { "D3_DTVALID"	, ddatabase	, Nil } }
+			EndIf
+
+
+          /* {"D3_DTVALID"    ,ddatabase           ,NIL},;
            {"D3_CUSTO1"     ,10                  ,NIL},;
            {"D3_LOTECTL"    ,"TESTE"             ,NIL},;// se este campo estiver vazio, o sistema ira gerar um código automático.
-           {"D3_NUMLOTE"    ,"TESTE"             ,NIL}}
+           {"D3_NUMLOTE"    ,"TESTE"             ,NIL}}*/
 
 
 MSExecAuto({|x,y| mata240(x,y)},aVetor,3) //Inclusao
@@ -46,3 +57,11 @@ MSExecAuto({|x,y| mata240(x,y)},aVetor,3) //Inclusao
 		EndIf
 
 Return
+
+
+
+
+
+
+
+			MSExecAuto( { |x,y| MATA240( x , y ) }, aVetor, 3 )

@@ -14,21 +14,31 @@ Local nLinha     := 0
 Local nQtdLinhas := 0
 Local cClasse 	 := ''
 Local cMsg       := ''
+Local nOperation
 
 
-If aParam <> NIL
-
+//If aParam <> NIL
+If (oObj != NIL .And. oObj:IsActive() == .T.)
        oObj       := aParam[1]
        cIdPonto   := aParam[2]
        cIdModel   := aParam[3]
        lIsGrid    := ( Len( aParam ) > 3 )
-
+       nOperation := oObj:GetOperation()
       /* If lIsGrid
              nQtdLinhas := oObj:GetQtdLine()
              nLinha     := oObj:nLine
       EndIf*/
+                 oModelPad  := FwModelActive()
+		oModel     := oModelPad:GetModel("SB5DETAIL")
 
-       If     cIdPonto == 'MODELPOS'
+      If (nOperation == 3 .And. IsInCallStack("A010COPIA"))//ProcName(4) == "CANSETVALUE")
+         //oObj:GetModel("SB5DETAIL")
+	oModel:LoadValue("B5_CEME","TESTE")
+        //oObj:SetValue("SB5DETAIL","B5_CEME","TESTE")
+       //oObj:FWFldPut("B5_CEME","TEST")
+      EndIf
+
+      /*If     cIdPonto == 'MODELPOS'
              cMsg := 'Chamada na validação total do modelo (MODELPOS).' + CRLF
              cMsg += 'ID ' + cIdModel + CRLF
 
@@ -99,5 +109,15 @@ xRet := { {'Salvar', 'SALVAR', { || Alert( 'Salvou' ) }, 'Este botao Salva' } }
        EndIf
 
 EndIf
+//ProcName(4)
+//"CANSETVALUE"
+/*If (cIdPonto == "FORMPRE")
+
+				oObj:SetValue("B5_CEME","TESTE")
+			EndIf
+*/
+		EndIf
+
+
 
 Return xRet

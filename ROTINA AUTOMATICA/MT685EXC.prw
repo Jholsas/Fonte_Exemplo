@@ -4,25 +4,34 @@ Local cEnvMod := "PCP"
 Local aCabec := {}
 Local aItens := {}
 Local aLinha := {}
+Local nQtd := 10
+
 
 PRIVATE lMsErroAuto := .F.
 
 RpcSetEnv( "99","01",,,cEnvMod,,,,,,)
 
-aCabec := {{"BC_OP"      ,"OP000601001"     ,NIL}}
-aItens := {{"BC_QUANT"   ,10				,NIL},;
-		   {"BC_PRODUTO" ,"MODCNTC0001"     ,NIL},;
-           {"BC_LOCORIG" ,"01"		        ,NIL},;
-           {"BC_TIPO" 	 ,"R" 			    ,NIL},;
-           {"BC_DTVALID" ,dDatabase 		,NIL},;
-           {"BC_MOTIVO"  ,"FH"              ,NIL}}
+aCabec := {{"BC_OP"      ,"00000101001   "      ,NIL}}
+
+aItens := {{"BC_QUANT"   ,nQtd				    ,NIL},;
+		   {"BC_PRODUTO" ,"000220         "     ,NIL},;
+           {"BC_LOCORIG" ,"01"		            ,NIL},;
+           {"BC_TIPO" 	 ,"R" 			        ,NIL},;
+           {"BC_MOTIVO"  ,"FH"                  ,NIL},;
+           {"BC_LOCAL"      ,"01"               ,NIL},;
+		   {"BC_LOTECTL"    ,"TESTE"            ,NIL},;
+		   {"BC_LOCALIZ"    ,"TESTE"            ,NIL},;
+           {"BC_DTVALID" ,dDatabase 		    ,NIL},;
+		   {"BC_LOCDEST"    ,"01"               ,NIL}}
+
+
 
            AAdd(aLinha ,aItens)
-           MsExecAuto ( {|x,y,z| MATA685(x,y,z) }, aCabec, aLinha, 6)
+           MsExecAuto ( {|x,y,z| MATA685(x,y,z) }, aCabec, aLinha, nOpc)
 
     If lMsErroAuto
         MostraErro()
     Else
-        Alert("Excluido com sucesso!")
+        Alert("Incluido com sucesso!")
     Endif
 Return

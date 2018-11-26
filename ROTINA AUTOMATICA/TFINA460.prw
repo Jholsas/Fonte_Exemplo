@@ -12,15 +12,15 @@ Local nOpc:=3//3-Liquidação,4-Reliquidacao,5-Cancelamento da liquidação
 Local cFiltro :=""
 Local cLiqCan := Space(6)  //numero da liquidacao a cancelar
 Local aParcelas:={}
-Local nValor := 3000  //Valor a liquidar
-Local cCond := '001' //Condicao de pagamento 4x
+Local nValor := 50  //Valor a liquidar
+Local cCond := '002' //Condicao de pagamento 4x
 Local nRadio := 1
 Local oRadio
 Local oLiqCan
 
 PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01"
 
-cNum := PadR("LDQ0007", TamSX3("E1_NUM")[1])
+cNum := PadR("LDQ0011", TamSX3("E1_NUM")[1])
 //Tela utilizada apenas para exemplo
 nOpca := 0
 DEFINE MSDIALOG oDlg FROM  094,1 TO 240,300 TITLE "Liquidação Automatica" PIXEL
@@ -46,7 +46,7 @@ If nOpca == 1
          nOpc := 3
          //Filtro do Usuário
          cFiltro := "E1_FILIAL=='"+xFilial("SE1")+"' .And. "
-         cFiltro += "E1_CLIENTE=='000001'.And. E1_LOJA =='01' .And. "
+         cFiltro += "E1_CLIENTE=='000010'.And. E1_LOJA =='01' .And. "
          cFiltro += "E1_SITUACA$'0FG' .And. E1_SALDO>0 .and. "
          cFiltro += 'Empty(E1_NUMLIQ)'
       Else
@@ -63,8 +63,8 @@ If nOpca == 1
       //Array do processo automatico (aAutoCab)
       aCab:={ {"cCondicao" ,cCond },;
               {"cNatureza" ,"0000000001" },;
-              {"E1_TIPO"  ,"NF " },;
-              {"cCLIENTE"  ,"000001"},;
+              {"E1_TIPO"  ,"BOL" },;
+              {"cCLIENTE"  ,"000010"},;
               {"nMoeda"  ,1   },;
               {"cLOJA"   ,"01"  }}
 
@@ -79,7 +79,7 @@ If nOpca == 1
       //--------------------------------------------------------------
       For nZ:=1 to Len(aParcelas)
         //Dados das parcelas a serem geradas
-        Aadd(aItens,{{ "E1_PREFIXO","D  "  },;//Prefixo
+        Aadd(aItens,{{ "E1_PREFIXO","LIQ"  },;//Prefixo
                    {"E1_BCOCHQ" ,"341"  },;//Banco
                    {"E1_AGECHQ" ,"0001"  },;//Agencia
                    {"E1_CTACHQ" ,"000001"  },;//Conta

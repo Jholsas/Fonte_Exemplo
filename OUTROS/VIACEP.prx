@@ -1,4 +1,4 @@
-#Include "totvs.ch"
+//#Include "totvs.ch"
 
 User Function VIACEP()
     Local cCEP     := "06757200"

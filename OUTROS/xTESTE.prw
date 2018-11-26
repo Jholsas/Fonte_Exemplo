@@ -2,16 +2,29 @@
 #include 'parmtype.ch'
 
 user function xTESTE()
-//Local aAcessos := GetAccessList()
-ConOut("     ___   _____   _     _   _____   _      ")
-ConOut("    /   | |  _  \ | |   / / |  _  \ | |     ")
-ConOut("   / /| | | | | | | |  / /  | |_| | | |     ")
-ConOut("  / / | | | | | | | | / /   |  ___/ | |     ")
-ConOut(" / /  | | | |_| | | |/ /    | |     | |___  ")
-ConOut("/_/   |_| |_____/ |___/     |_|     |_____| ")
-ConOut("Analista: Victor Araujo")
 
+
+
+if IsBlind() // essa função evita a chamada de interface grafica
+
+
+	
+		ConOut("     ___   _____   _     _   _____   _      ")
+		ConOut("    /   | |  _  \ | |   / / |  _  \ | |     ")
+		ConOut("   / /| | | | | | | |  / /  | |_| | | |     ")
+		ConOut("  / / | | | | | | | | / /   |  ___/ | |     ")
+		ConOut(" / /  | | | |_| | | |/ /    | |     | |___  ")
+		ConOut("/_/   |_| |_____/ |___/     |_|     |_____| ")
+		ConOut("Analista: Victor Araujo")
+	Else
+		Alert("TESTE")
+		MsgBox("Confirma exportacao dos dados?","Atencao","YESNO")
+		
+	
+	
+ EndIf
 return
+
 
 /*
 local aRet      := {}
